@@ -1,0 +1,243 @@
+html, 
+body {
+    height: 100%;
+    margin: 0;
+    Background: linear-gradient(0deg, rgb(52, 180, 219), #ffffff) fixed;
+ 
+}
+
+
+.grid * {
+    padding: 5px 15px;
+    text-align: center;
+    font-size: 18px;
+    font-family: sans-serif;
+    color: rgb(9, 45, 122);
+}
+
+/* сетка */
+
+.grid {
+    height: 100%;
+    display: grid;
+    grid-template-columns:  1fr 3fr 2fr;
+    grid-template-rows: 130px 1fr 50px;
+    grid-template-areas:
+     "header header header"
+     "aside main section"
+     "footer footer footer";
+}
+
+header {
+    grid-area: header;
+
+    border-radius: 50px;
+    display: grid;
+    grid-template-columns:2fr 3fr 2fr  3fr ;
+
+    align-items:center;
+
+}
+.nav {
+    display: grid;
+    grid-template-columns: 1fr  1fr;
+    justify-items: center;
+   
+}
+.week {
+    display: grid;
+    grid-template-columns: 2fr 1fr 2fr;
+    padding: 0;
+    align-items:center;
+    justify-items: center;
+    
+    
+}
+
+aside {
+    grid-area: aside;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows:  2fr 1fr;
+}
+
+.desk{
+    display: grid;
+    margin-top: 10%;
+}
+.dashboard{
+display: grid;
+grid-template-columns: 50px 1fr;
+
+}
+.map{
+    display: grid;
+    grid-template-columns: 50px 1fr;
+}
+.saved {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+}
+.calendar {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+}
+.setting {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+}
+.logout {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+}
+
+
+main {
+    grid-area: main;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 300px 100px 100px 100px 100px 100px;
+    grid-template-areas: 
+    "today today"
+    "uv wind "
+    "real hum"
+    "vis pres"
+    "sunrise sunset";  
+}
+
+.Today{
+    grid-area: today;
+    display: grid;
+    background-image: url(/images/s.jpg);
+    background-size: cover;
+    border-radius: 50px;
+}
+.UV { 
+    grid-area: uv;
+    display: grid;
+    border: 3px solid rgb(126, 212, 232);
+    border-radius: 50px;
+    grid-template-columns: 80px 1fr;
+    align-items: center;
+}
+.Wind {
+    grid-area: wind;
+    display: grid;
+    border: 3px solid rgb(126, 212, 232);
+    border-radius: 50px;
+    grid-template-columns: 80px 1fr;
+    align-items: center;
+}
+.Real {
+    grid-area: real;
+    display: grid;
+    border: 3px solid rgb(126, 212, 232);
+    border-radius: 50px;
+    grid-template-columns: 80px 1fr;
+    align-items: center;
+}
+.Humidity {
+    grid-area: hum;
+    display: grid;
+    border: 3px solid rgb(126, 212, 232);
+    border-radius: 50px;
+    grid-template-columns: 80px 1fr;
+    align-items: center;
+}
+.Visibility {
+    grid-area: vis;
+    display: grid;
+    border: 3px solid rgb(126, 212, 232);
+    border-radius: 50px;
+    grid-template-columns: 80px 1fr;
+    align-items: center;
+}
+.Pressure {
+    grid-area: pres;
+    display: grid;
+    border: 3px solid rgb(126, 212, 232);
+    border-radius: 50px;
+    grid-template-columns: 80px 1fr;
+    align-items: center;
+}
+.Sunrise {
+    grid-area: sunrise;
+    display: grid;
+    border: 3px solid rgb(126, 212, 232);
+    border-radius: 50px;
+    grid-template-columns: 80px 1fr;
+    align-items: center;
+}
+.Sunset {
+    grid-area: sunset;
+    display: grid;
+    border: 3px solid rgb(126, 212, 232);
+    border-radius: 50px;
+    grid-template-columns: 80px 1fr;
+    align-items: center;
+}
+
+
+
+
+section {
+    grid-area: section;
+
+    display: grid;
+}
+
+.tommorow {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+
+}
+.monday {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+.tuesday {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+.wednesday {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+.thursday {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+.friday{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+.saturday{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+
+
+
+
+
+
+
+
+footer {
+    grid-area: footer;
+}
+
+
