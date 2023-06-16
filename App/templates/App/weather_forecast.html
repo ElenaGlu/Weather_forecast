@@ -1,79 +1,27 @@
-{% load static %}
-<!DOCTYPE html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/grid-style.css' %}">
-    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
-    <title>{% block title %}Weather Aplication{% endblock %}</title>
-</head>
-<body>
-    <div class="grid">
-        <header>
-            <div class="logo">
-                <img src="{{'../static/images/logo.png'}}" width=180px />
-            </div>
-
-            <div class="search-container">
-                <input type="text" name="search" placeholder="Search..." class="search-input">
-                <a href="#" class="search-btn">
-                        <i class="fas fa-search"></i>      
-                </a>
-            </div>
-          
-
-            <div class="nav">
-                <img src="{{'../static/images/sidebar/007-email.png'}}" width=60px />
-                <img src="{{'../static/images/sidebar/006-user.png'}}" width=60px />
-            </div>
-
-            <div class="week">
-                <img src="{{'../static/images/sidebar/009-left-chevron.png'}}" width=60px />
-                <p>Weeks</p>
-                <img src="{{'../static/images/sidebar/010-right-chevron.png'}}" width=60px /></div>
-        </header>
-
-        <aside>
-       
-            <div class="desk">
-                <div class="dashboard"><img src="{{'../static/images/sidebar/001-menu.png'}}" width=50px />Dashboard</div>
-                <div class="map"><img src="{{'../static/images/sidebar/002-share.png'}}" width=50px />Map</div>
-                <div class="saved"><img src="{{'../static/images/sidebar/003-add.png'}}" width=50px />Saved Location</div>
-                <div class="calendar"><img src="{{'../static/images/sidebar/004-notepad.png'}}" width=50px />Calendar</div>
-                <div class="setting"><img src="{{'../static/images/sidebar/008-password.png'}}" width=50px />Setting</div>
-                <div class="logout"><img src="{{'../static/images/sidebar/005-logout.png'}}" width=50px />Log out</div>
-            </div>
-            <div></div>
-        </aside>
-
+{% extends "App/base.html" %}
+{% block content %}
         <main>
             <div class="Today">
-               
-                <p>Ekaterinburg</p>
-                <p>18'C</p>
-                <p>Today, 6 june</p>
-                <p>Cloudy</p>
+                <h2>Сейчас в городе, {{ place }} {{ temperature }} °C </h2>
 
             </div>
             
             <div class="UV">
-                <img src="{{'../static/images/main/001-uv-index.png'}}" width=80px />UV Index 0</div>
+                <img src="{{'../static/images/main/001-uv-index.png'}}" width=80px />Облачность: {{ clouds }} %</div>
             <div class="Wind">
-                <img src="{{'../static/images/main/002-windy.png'}}" width=80px /> Wind 3m/c</div>
+                <img src="{{'../static/images/main/002-windy.png'}}" width=80px />Ветер {{ wind_speed }} м/сек</div>
             <div class="Real">
-                <img src="{{'../static/images/main/003-sunrise.png'}}" width=80px />Real feel 17'C</div>
+                <img src="{{'../static/images/main/003-sunrise.png'}}" width=80px />Ощущается как {{ temperature_feels }} °C</div>
             <div class="Humidity">
-                <img src="{{'../static/images/main/004-sunset.png'}}" width=80px />Humidity 58 %</div>
+                <img src="{{'../static/images/main/004-sunset.png'}}" width=80px />Влажность {{ humidity }} %</div>
             <div class="Visibility">
-                <img src="{{'../static/images/main/005-humidity.png'}}" width=80px />Visibility 10 km/h</div>
+                <img src="{{'../static/images/main/005-humidity.png'}}" width=80px />Видимость {{ visibility }} км.</div>
             <div class="Pressure">
-                <img src="{{'../static/images/main/006-visibility.png'}}" width=80px />Pressure 759 mb</div>
+                <img src="{{'../static/images/main/006-visibility.png'}}" width=80px />Давление {{ pressure }} мм рт.ст.</div>
             <div class="Sunrise">
-                <img src="{{'../static/images/main/007-barometer.png'}}" width=80px />Sunrise 04:07 AM</div>
+                <img src="{{'../static/images/main/007-barometer.png'}}" width=80px /> Минимально  {{temp_min}} °C </div>
             <div class="Sunset">
-                <img src="{{'../static/images/main/008-thermometer.png'}}" width=80px />Sunset 9:44 PM</div>
+                <img src="{{'../static/images/main/008-thermometer.png'}}" width=80px /> Максимально  {{temp_max}} °C </div>
 
         </main>
 
@@ -115,6 +63,4 @@
             </div>
         </section>
         <footer></footer>
-    </div>
-</body>
-</html>
+{% endblock %}
