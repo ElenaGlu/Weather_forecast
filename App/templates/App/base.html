@@ -12,43 +12,17 @@
 <body>
     <div class="grid">
         <header>
-            <div class="logo">
-                <img src="{{'../static/images/logo.png'}}" width=180px />
-            </div>
 
 
-                <form action="place/" method="post">
-                           {% csrf_token %}
-                    <label for="place">Ваш город: </label>
-                    <input id="place" type="text" name="place" value="{{ current_place }}">
-                    <input type="submit" value="OK">
-                </form>
+<!--                <form action="place/" method="post">-->
+<!--                           {% csrf_token %}-->
+<!--                    <label for="place">Ваш город: </label>-->
+<!--                    <input id="place" type="text" name="place" value="{{ current_place }}">-->
+<!--                    <input type="submit" value="OK">-->
+<!--                </form>-->
 
-
-
-            <div class="nav">
-                <img src="{{'../static/images/sidebar/007-email.png'}}" width=60px />
-                <img src="{{'../static/images/sidebar/006-user.png'}}" width=60px />
-            </div>
-
-            <div class="week">
-                <img src="{{'../static/images/sidebar/009-left-chevron.png'}}" width=60px />
-                <p>Weeks</p>
-                <img src="{{'../static/images/sidebar/010-right-chevron.png'}}" width=60px /></div>
         </header>
 
-        <aside>
-
-            <div class="desk">
-                <div class="dashboard"><img src="{{'../static/images/sidebar/001-menu.png'}}" width=50px />Dashboard</div>
-                <div class="map"><img src="{{'../static/images/sidebar/002-share.png'}}" width=50px />Map</div>
-                <div class="saved"><img src="{{'../static/images/sidebar/003-add.png'}}" width=50px />Saved Location</div>
-                <div class="calendar"><img src="{{'../static/images/sidebar/004-notepad.png'}}" width=50px />Calendar</div>
-                <div class="setting"><img src="{{'../static/images/sidebar/008-password.png'}}" width=50px />Setting</div>
-                <div class="logout"><img src="{{'../static/images/sidebar/005-logout.png'}}" width=50px />Log out</div>
-            </div>
-            <div></div>
-        </aside>
 
   {% block content %}
 		{% endblock %}
