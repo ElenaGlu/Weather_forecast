@@ -6,6 +6,7 @@ from django.shortcuts import render
 from .forms import PlaceForm
 
 import requests
+import json
 
 
 def search_place(request):
@@ -23,27 +24,43 @@ def get_place(request):
         url_week = ('https://api.openweathermap.org/data/2.5/forecast?q=' + place +
                     '&units=metric&lang=ru&appid=cd1ab723a1cf674c1fd4544a78684676')
 
-        weather_data = requests.get(url_today).json()
-        # conditions = str(round(weather_data['weather'][0]['description']))
-        temperature = str(round(weather_data['main']['temp']))
-        temperature_feels = str(round(weather_data['main']['feels_like']))
-        clouds = str(round(weather_data['clouds']['all']))
-        pressure = str(round(weather_data['main']['pressure']))
-        humidity = str(round(weather_data['main']['humidity']))
-        visibility = str(round(weather_data['visibility']))
-        wind_speed = str(round(weather_data['wind']['speed']))
-        temp_min = str(round(weather_data['main']['temp_min']))
-        temp_max = str(round(weather_data['main']['temp_max']))
+        weather_day = requests.get(url_today).text
+        data_day = json.loads(weather_day)
 
-        weather_week = requests.get(url_week).json()
-        temp_list = round(weather_week['main']['temp'])
-        print(temp_list)
+        conditions = str(data_day['weather'][0]['description'])
+        temperature = str(round(data_day['main']['temp']))
+        temperature_feels = str(round(data_day['main']['feels_like']))
+        clouds = str(round(data_day['clouds']['all']))
+        pressure = str(round(data_day['main']['pressure']))
+        humidity = str(round(data_day['main']['humidity']))
+        visibility = str(round(data_day['visibility']))
+        wind_speed = str(round(data_day['wind']['speed']))
+        temp_min = str(round(data_day['main']['temp_min']))
+        temp_max = str(round(data_day['main']['temp_max']))
+
+        weather_week = requests.get(url_week).text
+        data_week = json.loads(weather_week)
+
+        dict1 = {}
+
+        for i in range(len(data_week['list'])):
+            f = (str(data_week['list'][i]['dt_txt']))[:11]
+            minimal = int(str(str(round(data_week['list'][i]['main']['temp_min']))))
+            maximum = int(str(str(round(data_week['list'][i]['main']['temp_max']))))
+            if f not in dict1.keys():
+                dict1[f] = [100, -100]
+            if dict1[f][0] > minimal:
+                dict1[f][0] = minimal
+            if dict1[f][1] < maximum:
+                dict1[f][1] = maximum
+        print(dict1)
 
         return render(request, 'App/weather_forecast.html', {'place': place, 'temperature': temperature,
                                                              'temperature_feels': temperature_feels, 'clouds': clouds,
                                                              'pressure': pressure, 'humidity': humidity,
                                                              'visibility': visibility, 'wind_speed': wind_speed,
-                                                             'temp_min': temp_min, 'temp_max': temp_max,})
+                                                             'temp_min': temp_min, 'temp_max': temp_max,
+                                                             'conditions': conditions, })
         # else:
         #     form = PlaceForm()
     return render(request, 'App/search.html')
