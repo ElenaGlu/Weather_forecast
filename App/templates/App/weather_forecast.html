@@ -22,48 +22,51 @@
             <div class="Pressure">
                 <img src="{{'../static/images/main/008-thermometer.png'}}" width=80px />Давление {{ pressure }} мм рт.ст.</div>
             <div class="Sunrise">
-                <img src="{{'../static/images/main/003-sunrise.png'}}" width=80px /> Мин t {{temp_min}} °C </div>
+                <img src="{{'../static/images/main/003-sunrise.png'}}" width=80px /> Минимальная t {{temp_min}} °C </div>
             <div class="Sunset">
-                <img src="{{'../static/images/main/004-sunset.png'}}" width=80px /> Макс t {{temp_max}} °C </div>
+                <img src="{{'../static/images/main/004-sunset.png'}}" width=80px /> Максимальная t {{temp_max}} °C </div>
 
         </main>
-
         <section>
             <div class="tommorow">
-                <p>Tommorow</p>
-                <p>16'</p>
-                <img src="{{'../static/images/png/001-cloud.png'}}" width=80px />
+                {% for item in one %}
+                <p>{{ item }}</p>
+                    {% endfor %}
+<!--                <img src="{{'../static/images/png/001-cloud.png'}}" width=80px />-->
+
             </div>
             <div class="monday">
-                <p>Monday</p>
-                <p>18'</p>
-                <img src="{{'../static/images/png/002-sunny.png'}}" width=80px />
+                {% for item in two %}
+                <p>{{ item }}</p>
+                    {% endfor %}
+<!--                <img src="{{'../static/images/png/002-sunny.png'}}" width=80px />-->
             </div>
             <div class="tuesday">
-                <p>Tuesday</p>
-                <p>15'</p>
-                <img src="{{'../static/images/png/003-sun.png'}}" width=80px />
+                {% for item in three %}
+                <p>{{ item }}</p>
+                    {% endfor %}
+<!--                <img src="{{'../static/images/png/003-sun.png'}}" width=80px />-->
             </div>
             <div class="wednesday">
-                <p>Wednesday</p>
-                <p>17'</p>
-                <img src="{{'../static/images/png/004-storm.png'}}" width=80px />
+                  {% for item in four %}
+                <p>{{ item }}</p>
+                    {% endfor %}
+<!--                <img src="{{'../static/images/png/004-storm.png'}}" width=80px />-->
             </div>
             <div class="thursday">
-                <p>Thursday</p>
-                <p>17'</p>
-                <img src="{{'../static/images/png/005-storm-1.png'}}" width=80px />
+                {% for item in five %}
+                <p>{{ item }}</p>
+                    {% endfor %}
+<!--                <img src="{{'../static/images/png/005-storm-1.png'}}" width=80px />-->
             </div>
             <div class="friday">
-                <p>Friday</p>
-                <p>16'</p>
-                <img src="{{'../static/images/png/006-cloud-1.png'}}" width=80px />
+                {% for item in six %}
+                <p>{{ item }}</p>
+                    {% endfor %}
+<!--                <img src="{{'../static/images/png/006-cloud-1.png'}}" width=80px />-->
             </div>
-            <div class="saturday">
-                <p>Saturday</p>
-                <p>15'</p>
-                <img src="{{'../static/images/png/007-cloud-2.png'}}" width=80px />
-            </div>
+
         </section>
+
         <footer></footer>
 {% endblock %}

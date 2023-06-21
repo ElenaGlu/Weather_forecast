@@ -118,43 +118,43 @@ section {
 
 .tommorow {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr ;
+    /*grid-template-rows: 1fr 1fr;*/
 
 }
 .monday {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr ;
+    /*grid-template-rows: 1fr 1fr;*/
 }
 
 .tuesday {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr ;
+    /*grid-template-rows: 1fr 1fr;*/
 }
 
 .wednesday {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr ;
+    /*grid-template-rows: 1fr 1fr;*/
 }
 .thursday {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr ;
+    /*grid-template-rows: 1fr 1fr;*/
 }
 
 .friday{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr ;
+    /*grid-template-rows: 1fr 1fr;*/
 }
 
 .saturday{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr ;
+    /*grid-template-rows: 1fr 1fr;*/
 }
 
 

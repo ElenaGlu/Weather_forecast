@@ -45,22 +45,27 @@ def get_place(request):
 
         for i in range(len(data_week['list'])):
             f = (str(data_week['list'][i]['dt_txt']))[:11]
+            descript = str(data_day['weather'][0]['description'])
             minimal = int(str(str(round(data_week['list'][i]['main']['temp_min']))))
             maximum = int(str(str(round(data_week['list'][i]['main']['temp_max']))))
             if f not in dict1.keys():
-                dict1[f] = [100, -100]
+                dict1[f] = [100, -100, '']
             if dict1[f][0] > minimal:
                 dict1[f][0] = minimal
             if dict1[f][1] < maximum:
                 dict1[f][1] = maximum
+            dict1[f][2] = descript
         print(dict1)
+        [one, two, three, four, five, six] = dict1.items()
+
 
         return render(request, 'App/weather_forecast.html', {'place': place, 'temperature': temperature,
                                                              'temperature_feels': temperature_feels, 'clouds': clouds,
                                                              'pressure': pressure, 'humidity': humidity,
                                                              'visibility': visibility, 'wind_speed': wind_speed,
                                                              'temp_min': temp_min, 'temp_max': temp_max,
-                                                             'conditions': conditions, })
+                                                             'conditions': conditions, 'one': one, 'two': two,
+                                                             'three': three, 'four': four, 'five': five, 'six': six})
         # else:
         #     form = PlaceForm()
     return render(request, 'App/search.html')
