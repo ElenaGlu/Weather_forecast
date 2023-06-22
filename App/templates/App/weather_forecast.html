@@ -2,7 +2,7 @@
 {% block content %}
         <main>
             <div class="Today">
-                <h2>{{ place }} </h2>
+                <h1>{{ place }} </h1>
                 <h2>{{ temperature }} °C </h2>
                 <h3>{{ conditions }} </h3>
 
@@ -30,8 +30,9 @@
         <section>
             <div class="tommorow">
                     {% for k, v  in dict1.items %}
-                        <p>{{ k }}: {{ v.2 }}</p>
-                        <h4>{{ v.0 }} °C - {{ v.1 }} °C </h4>
+                        <p>{{ k }} : {{ v.2 }} </p>
+                        <p>{{ v.0 }} °C - {{ v.1 }} °C </p>
+
                     {% endfor %}
         </section>
 
