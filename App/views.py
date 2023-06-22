@@ -7,7 +7,7 @@ from .forms import PlaceForm
 
 import requests
 import json
-
+import datetime
 
 def search_place(request):
     return render(request, 'App/search.html')
@@ -31,12 +31,14 @@ def get_place(request):
         temperature = str(round(data_day['main']['temp']))
         temperature_feels = str(round(data_day['main']['feels_like']))
         clouds = str(round(data_day['clouds']['all']))
-        pressure = str(round(data_day['main']['pressure']))
+        pressure = str(round((data_day['main']['pressure'])/1.333))
         humidity = str(round(data_day['main']['humidity']))
-        visibility = str(round(data_day['visibility']))
+        visibility = str(data_day['visibility'])
         wind_speed = str(round(data_day['wind']['speed']))
-        temp_min = str(round(data_day['main']['temp_min']))
-        temp_max = str(round(data_day['main']['temp_max']))
+        # temp_min = str(round(data_day['main']['temp_min']))
+        # temp_max = str(round(data_day['main']['temp_max']))
+        sunrise_timestamp = datetime.datetime.fromtimestamp(data_day["sys"]["sunrise"])
+        sunset_timestamp = datetime.datetime.fromtimestamp(data_day["sys"]["sunset"])
 
         weather_week = requests.get(url_week).text
         data_week = json.loads(weather_week)
@@ -45,9 +47,10 @@ def get_place(request):
 
         for i in range(len(data_week['list'])):
             f = (str(data_week['list'][i]['dt_txt']))[:11]
-            descript = str(data_day['weather'][0]['description'])
+            descript = str(data_week['list'][i]['weather'][0]['description'])
             minimal = int(str(str(round(data_week['list'][i]['main']['temp_min']))))
             maximum = int(str(str(round(data_week['list'][i]['main']['temp_max']))))
+
             if f not in dict1.keys():
                 dict1[f] = [100, -100, '']
             if dict1[f][0] > minimal:
@@ -55,17 +58,13 @@ def get_place(request):
             if dict1[f][1] < maximum:
                 dict1[f][1] = maximum
             dict1[f][2] = descript
-        print(dict1)
-        [one, two, three, four, five, six] = dict1.items()
-
 
         return render(request, 'App/weather_forecast.html', {'place': place, 'temperature': temperature,
                                                              'temperature_feels': temperature_feels, 'clouds': clouds,
                                                              'pressure': pressure, 'humidity': humidity,
                                                              'visibility': visibility, 'wind_speed': wind_speed,
-                                                             'temp_min': temp_min, 'temp_max': temp_max,
-                                                             'conditions': conditions, 'one': one, 'two': two,
-                                                             'three': three, 'four': four, 'five': five, 'six': six})
+                                                             'sunrise_timestamp': sunrise_timestamp,
+                                                             'sunset_timestamp': sunset_timestamp, 'dict1': dict1})
         # else:
         #     form = PlaceForm()
     return render(request, 'App/search.html')

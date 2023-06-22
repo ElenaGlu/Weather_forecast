@@ -8,7 +8,6 @@ body {
 .grid * {
     padding: 5px 15px;
     text-align: center;
-    font-size: 18px;
     font-family: sans-serif;
     color: rgb(9, 45, 122);
 }
@@ -34,10 +33,10 @@ main {
     grid-template-rows: 180px 100px 100px 100px 100px 100px;
     grid-template-areas:
     "today today"
-    "uv wind "
-    "real hum"
-    "vis pres"
-    "sunrise sunset";
+    "wind real"
+    "uv hum"
+    "pres vis"
+    "sunrise sunset ";
 }
 
 .Today{
@@ -118,45 +117,11 @@ section {
 
 .tommorow {
     display: grid;
-    grid-template-columns: 1fr 1fr ;
-    /*grid-template-rows: 1fr 1fr;*/
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr ;
+
 
 }
-.monday {
-    display: grid;
-    grid-template-columns: 1fr 1fr ;
-    /*grid-template-rows: 1fr 1fr;*/
-}
-
-.tuesday {
-    display: grid;
-    grid-template-columns: 1fr 1fr ;
-    /*grid-template-rows: 1fr 1fr;*/
-}
-
-.wednesday {
-    display: grid;
-    grid-template-columns: 1fr 1fr ;
-    /*grid-template-rows: 1fr 1fr;*/
-}
-.thursday {
-    display: grid;
-    grid-template-columns: 1fr 1fr ;
-    /*grid-template-rows: 1fr 1fr;*/
-}
-
-.friday{
-    display: grid;
-    grid-template-columns: 1fr 1fr ;
-    /*grid-template-rows: 1fr 1fr;*/
-}
-
-.saturday{
-    display: grid;
-    grid-template-columns: 1fr 1fr ;
-    /*grid-template-rows: 1fr 1fr;*/
-}
-
 
 footer {
     grid-area: footer;

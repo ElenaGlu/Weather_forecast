@@ -2,70 +2,37 @@
 {% block content %}
         <main>
             <div class="Today">
-                <h1>{{ place }} </h1>
-                <h1>{{ temperature }} °C </h1>
-                <h2>{{ conditions }} </h2>
-
+                <h2>{{ place }} </h2>
+                <h2>{{ temperature }} °C </h2>
+                <h3>{{ conditions }} </h3>
 
             </div>
-            
-            <div class="UV">
-                <img src="{{'../static/images/main/001-uv-index.png'}}" width=80px />Облачность: {{ clouds }} %</div>
             <div class="Wind">
                 <img src="{{'../static/images/main/002-windy.png'}}" width=80px />Ветер {{ wind_speed }} м/сек</div>
             <div class="Real">
-                <img src="{{'../static/images/main/007-barometer.png'}}" width=80px />Ощущается как {{ temperature_feels }} °C</div>
+                <img src="{{'../static/images/main/007-barometer.png'}}" width=80px />Ощущается как
+                {{ temperature_feels }} °C</div>
+            <div class="UV">
+                <img src="{{'../static/images/main/002-windy.png'}}" width=80px />Облачность: {{ clouds }} %</div>
             <div class="Humidity">
                 <img src="{{'../static/images/main/005-humidity.png'}}" width=80px />Влажность {{ humidity }} %</div>
-            <div class="Visibility">
-                <img src="{{'../static/images/main/006-visibility.png'}}" width=80px />Видимость {{ visibility }} км.</div>
             <div class="Pressure">
                 <img src="{{'../static/images/main/008-thermometer.png'}}" width=80px />Давление {{ pressure }} мм рт.ст.</div>
-            <div class="Sunrise">
-                <img src="{{'../static/images/main/003-sunrise.png'}}" width=80px /> Минимальная t {{temp_min}} °C </div>
+            <div class="Visibility">
+                <img src="{{'../static/images/main/006-visibility.png'}}" width=80px />Видимость {{ visibility }} км.</div>
             <div class="Sunset">
-                <img src="{{'../static/images/main/004-sunset.png'}}" width=80px /> Максимальная t {{temp_max}} °C </div>
+                <img src="{{'../static/images/main/003-sunrise.png'}}" width=80px />  {{sunset_timestamp}}  </div>
+            <div class="Sunrise">
+                <img src="{{'../static/images/main/004-sunset.png'}}" width=80px />  {{sunrise_timestamp}}  </div>
+
 
         </main>
         <section>
             <div class="tommorow">
-                {% for item in one %}
-                <p>{{ item }}</p>
+                    {% for k, v  in dict1.items %}
+                        <p>{{ k }}: {{ v.2 }}</p>
+                        <h4>{{ v.0 }} °C - {{ v.1 }} °C </h4>
                     {% endfor %}
-<!--                <img src="{{'../static/images/png/001-cloud.png'}}" width=80px />-->
-
-            </div>
-            <div class="monday">
-                {% for item in two %}
-                <p>{{ item }}</p>
-                    {% endfor %}
-<!--                <img src="{{'../static/images/png/002-sunny.png'}}" width=80px />-->
-            </div>
-            <div class="tuesday">
-                {% for item in three %}
-                <p>{{ item }}</p>
-                    {% endfor %}
-<!--                <img src="{{'../static/images/png/003-sun.png'}}" width=80px />-->
-            </div>
-            <div class="wednesday">
-                  {% for item in four %}
-                <p>{{ item }}</p>
-                    {% endfor %}
-<!--                <img src="{{'../static/images/png/004-storm.png'}}" width=80px />-->
-            </div>
-            <div class="thursday">
-                {% for item in five %}
-                <p>{{ item }}</p>
-                    {% endfor %}
-<!--                <img src="{{'../static/images/png/005-storm-1.png'}}" width=80px />-->
-            </div>
-            <div class="friday">
-                {% for item in six %}
-                <p>{{ item }}</p>
-                    {% endfor %}
-<!--                <img src="{{'../static/images/png/006-cloud-1.png'}}" width=80px />-->
-            </div>
-
         </section>
 
         <footer></footer>
