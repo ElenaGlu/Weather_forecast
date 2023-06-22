@@ -33,19 +33,19 @@ main {
     grid-template-areas:
     "today today"
     "wind real"
-    "uv hum"
+    "cloud hum"
     "pres vis"
     "sunrise sunset ";
 }
 
-.Today{
+.current_forecast{
     grid-area: today;
     display: grid;
     background-size: cover;
     border-radius: 50px;
 }
-.UV {
-    grid-area: uv;
+.Cloud {
+    grid-area: cloud;
     display: grid;
     border: 3px solid rgb(126, 212, 232);
     border-radius: 50px;
@@ -114,7 +114,7 @@ section {
     display: grid;
 }
 
-.tommorow {
+.five_day_forecast {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr;
