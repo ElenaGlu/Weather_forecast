@@ -10,11 +10,11 @@
 <body>
     <div class="grid">
         <header>
-        <h1 class="mint">Weather Application</h1>
+        <h1 class="mint">Weather Forecast</h1>
             <form action="city/" method="post">
                 {% csrf_token %}
                 <label for="city"></label>
-                <input id="city" type="text" placeholder="Your City" name="city" value="{{ current_place }}">
+                <input id="city" type="text" placeholder="City" name="city" value="{{ current_place }}">
                 <input type="submit" value="search">
             </form>
         </header>

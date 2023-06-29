@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
-from .forms import PlaceForm
 from .app_services import get_data_about_city
+from .forms import PlaceForm
 
 
 def search_place(request):
@@ -10,6 +10,10 @@ def search_place(request):
 
 def get_place(request):
     if request.method == 'POST':
-        dict1 = get_data_about_city()
-        return render(request, 'App/weather_forecast.html', dict1)
-    return render(request, 'App/base.html')
+        form = PlaceForm(request.POST)
+        if form.is_valid():
+            city = form.cleaned_data["city"]
+            full_forecast = get_data_about_city(city)
+            return render(request, 'App/weather_forecast.html', full_forecast)
+        else:
+            return render(request, 'App/base.html')
