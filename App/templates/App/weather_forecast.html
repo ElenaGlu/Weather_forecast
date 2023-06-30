@@ -2,26 +2,26 @@
 {% block content %}
 <main>
     <div class="current_forecast">
-        <h1>{{ city }} </h1>
-        <h2>{{ temperature }} °C </h2>
-        <h3>{{ conditions }} </h3></div>
+        <h1>{{ forecast_today.city }} </h1>
+        <h2>{{ forecast_today.temperature }} °C </h2>
+        <h3>{{ forecast_today.conditions }} </h3></div>
 
     <div class="Wind">
-        <img src="{{'../static/images/002-windy.png'}}" width=80px />Ветер {{ wind_speed }} м/сек</div>
+        <img src="{{'../static/images/002-windy.png'}}" width=80px />Ветер {{ forecast_today.wind_speed }} м/сек</div>
     <div class="Real">
-        <img src="{{'../static/images/007-barometer.png'}}" width=80px />Ощущается как {{ temperature_feels }} °C</div>
+        <img src="{{'../static/images/007-barometer.png'}}" width=80px />Ощущается как {{ forecast_today.temperature_feels }} °C</div>
     <div class="Cloud">
-        <img src="{{'../static/images/002-windy.png'}}" width=80px />Облачность: {{ clouds }} %</div>
+        <img src="{{'../static/images/002-windy.png'}}" width=80px />Облачность: {{ forecast_today.clouds }} %</div>
     <div class="Humidity">
-        <img src="{{'../static/images/005-humidity.png'}}" width=80px />Влажность {{ humidity }} %</div>
+        <img src="{{'../static/images/005-humidity.png'}}" width=80px />Влажность {{ forecast_today.humidity }} %</div>
     <div class="Pressure">
-        <img src="{{'../static/images/008-thermometer.png'}}" width=80px />Давление {{ pressure }} мм рт.ст.</div>
+        <img src="{{'../static/images/008-thermometer.png'}}" width=80px />Давление {{ forecast_today.pressure }} мм рт.ст.</div>
     <div class="Visibility">
-        <img src="{{'../static/images/006-visibility.png'}}" width=80px />Видимость {{ visibility }} км.</div>
+        <img src="{{'../static/images/006-visibility.png'}}" width=80px />Видимость {{ forecast_today.visibility }} км.</div>
     <div class="Sunset">
-        <img src="{{'../static/images/003-sunrise.png'}}" width=80px />  {{sunset_timestamp}}  </div>
+        <img src="{{'../static/images/003-sunrise.png'}}" width=80px />  {{forecast_today.sunset_timestamp}}  </div>
     <div class="Sunrise">
-        <img src="{{'../static/images/004-sunset.png'}}" width=80px />  {{sunrise_timestamp}}  </div>
+        <img src="{{'../static/images/004-sunset.png'}}" width=80px />  {{forecast_today.sunrise_timestamp}}  </div>
 
     </main>
         <section>
