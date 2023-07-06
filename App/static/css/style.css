@@ -59,7 +59,7 @@ input[type=submit] {
     font-size: 15px;
 }
 
-.five_day_forecast {
+.forecast_for_five_days {
   border: 3px solid rgb(126, 212, 232);
   border-radius: 50px;
 }
@@ -144,7 +144,7 @@ section {
     display: grid;
 }
 
-.five_day_forecast {
+.forecast_for_five_days {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr;

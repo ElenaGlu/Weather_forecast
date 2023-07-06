@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from .app_services import get_data_about_city
+from .app_services import get_forecast_for_today, get_forecast_for_five_days
 from .forms import PlaceForm
 
 
@@ -13,7 +13,12 @@ def get_place(request):
         form = PlaceForm(request.POST)
         if form.is_valid():
             city = form.cleaned_data["city"]
-            full_forecast = get_data_about_city(city)
-            return render(request, 'App/weather_forecast.html', full_forecast)
+            forecast_for_today = get_forecast_for_today(city)
+            forecast_for_five_days = get_forecast_for_five_days(city)
+
+            return render(request, 'App/weather_forecast.html', {'forecast_for_today': forecast_for_today,
+                                                                 'forecast_for_five_days': forecast_for_five_days})
         else:
             return render(request, 'App/base.html')
+
+# def update_place(request):
