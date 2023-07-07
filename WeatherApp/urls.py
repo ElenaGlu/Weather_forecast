@@ -20,7 +20,7 @@ from django.urls import path
 from App import views
 
 urlpatterns = [
-    path('', views.search_place, name='search_place'),
-    path('city/', views.get_place, name='get_place'),
+    path('', views.loading_search_page, name='loading_search_page'),
+    path('city/', views.displays_weather_forecast_in_the_city, name='displays_weather_forecast_in_the_city'),
     path('admin/', admin.site.urls),
 ]

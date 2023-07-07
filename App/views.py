@@ -4,11 +4,11 @@ from .app_services import get_forecast_for_today, get_forecast_for_five_days
 from .forms import PlaceForm
 
 
-def search_place(request):
+def loading_search_page(request):
     return render(request, 'App/base.html')
 
 
-def get_place(request):
+def displays_weather_forecast_in_the_city(request):
     if request.method == 'POST':
         form = PlaceForm(request.POST)
         if form.is_valid():
@@ -21,4 +21,3 @@ def get_place(request):
         else:
             return render(request, 'App/base.html')
 
-# def update_place(request):
