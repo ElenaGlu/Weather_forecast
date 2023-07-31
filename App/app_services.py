@@ -4,13 +4,23 @@ import datetime
 from config import API_KEY_WEATHER
 
 
-def request_to_api_forecast(url: str):
+def request_to_api_forecast(url: str) -> json:
+    """
+    Requests the weather forecast in the API service(OpenWeatherMap).
+    :param: str
+    :return: json
+    """
     if requests.get(url).status_code == 200:
         return json.loads(requests.get(url).text)
     raise KeyError()
 
 
 def get_forecast_for_today(city: str) -> dict:
+    """
+    Gets forecast data for the requested city for the current time.
+    :param: str
+    :return: dict. Example {"clouds": "98", }
+    """
     request_for_today = request_to_api_forecast(f'https://api.openweathermap.org/data/2.5/weather?q={city}&units'
                                                 f'=metric&lang=ru&appid={API_KEY_WEATHER}')
 
@@ -28,6 +38,11 @@ def get_forecast_for_today(city: str) -> dict:
 
 
 def get_forecast_for_five_days(city: str) -> dict:
+    """
+    Gets forecast data for the requested city for 5 days.
+    :param: str
+    :return: dict. Example {"2023-07-31": [18, 24, "переменная облачность"], }
+    """
     request_for_five_days = request_to_api_forecast(f'https://api.openweathermap.org/data/2.5/forecast?q={city}&units'
                                                     f'=metric&lang=ru&appid={API_KEY_WEATHER}')
     forecast_for_five_days = {}
