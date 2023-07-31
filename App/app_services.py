@@ -6,8 +6,9 @@ from config import API_KEY_WEATHER
 
 
 def loads_json(url: str):
-    forecast_requests = requests.get(url).text
-    return json.loads(forecast_requests)
+    if requests.get(url).status_code == 200:
+        return json.loads(requests.get(url).text)
+    raise KeyError(requests.get(url).status_code)
 
 
 def get_forecast_for_today(city: str) -> dict:
