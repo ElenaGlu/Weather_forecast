@@ -1,19 +1,18 @@
 import requests
 import json
 import datetime
-
 from config import API_KEY_WEATHER
 
 
-def loads_json(url: str):
+def request_to_api_forecast(url: str):
     if requests.get(url).status_code == 200:
         return json.loads(requests.get(url).text)
-    raise KeyError(requests.get(url).status_code)
+    raise KeyError()
 
 
 def get_forecast_for_today(city: str) -> dict:
-    request_for_today = loads_json(f'https://api.openweathermap.org/data/2.5/weather?q={city}&units=metric&lang=ru'
-                                   f'&appid={API_KEY_WEATHER}')
+    request_for_today = request_to_api_forecast(f'https://api.openweathermap.org/data/2.5/weather?q={city}&units'
+                                                f'=metric&lang=ru&appid={API_KEY_WEATHER}')
 
     forecast_for_today = {'city': city, 'conditions': str(request_for_today['weather'][0]['description']),
                           'temperature': str(round(request_for_today['main']['temp'])),
@@ -29,8 +28,8 @@ def get_forecast_for_today(city: str) -> dict:
 
 
 def get_forecast_for_five_days(city: str) -> dict:
-    request_for_five_days = loads_json(f'https://api.openweathermap.org/data/2.5/forecast?q={city}&units=metric&lang'
-                                       f'=ru&appid={API_KEY_WEATHER}')
+    request_for_five_days = request_to_api_forecast(f'https://api.openweathermap.org/data/2.5/forecast?q={city}&units'
+                                                    f'=metric&lang=ru&appid={API_KEY_WEATHER}')
     forecast_for_five_days = {}
     for part_day in range(len(request_for_five_days['list'])):
         one_full_day = (str(request_for_five_days['list'][part_day]['dt_txt']))[:11]

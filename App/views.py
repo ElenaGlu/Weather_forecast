@@ -1,4 +1,3 @@
-from django.core.exceptions import ValidationError
 from django.shortcuts import render
 
 from .app_services import get_forecast_for_today, get_forecast_for_five_days
