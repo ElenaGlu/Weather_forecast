@@ -5,33 +5,52 @@ from django.test import Client
 from config import API_KEY_WEATHER
 
 import requests
-from json_checker import Checker
+from jsonschema import validate
 
 
 def test_get_forecast_for_today():
-    response = requests.get(f'https://api.openweathermap.org/data/2.5/weather?q=Москва&units'
-                            f'=metric&lang=ru&appid={API_KEY_WEATHER}')
+    schema = {
+        'type': 'object',
+        'required': ['city', 'conditions', 'temperature',
+                     'temperature_feels', 'clouds', 'pressure',
+                     'humidity', 'visibility', 'wind_speed'],
+        'properties': {
+            'city': {
+                'type': 'integer'
+            },
+            'conditions': {
+                'type': 'integer'
+            },
+            'temperature': {
+                'type': 'integer'
+            },
+            'temperature_feels': {
+                'type': 'integer'
+            },
+            'clouds': {
+                'type': 'integer'
+            },
+            'pressure': {
+                'type': 'integer'
+            },
+            'humidity': {
+                'type': 'integer'
+            },
+            'visibility': {
+                'type': 'integer'
+            },
+            'wind_speed': {
+                'type': 'integer'
+            },
+        }
+    }
+    #
+    # response = requests.get(f'https://api.openweathermap.org/data/2.5/weather?q=Москва&units'
+    #                         f'=metric&lang=ru&appid={API_KEY_WEATHER}')
     assert response.headers['Content-Type'] == "application/json; charset=utf-8"
 
-    schema = {
-        'city': str,
-        'conditions': str,
-        'temperature': int,
-        'temperature_feels': int,
-        'clouds': int,
-        'pressure': int,
-        'humidity': int,
-        'visibility': int,
-        'wind_speed': int,
-    }
-
-    dict1 = {'city': 'Москва', 'conditions': 'пасмурно', 'temperature': 22, 'temperature_feels': 21, 'clouds': 95,
-             'pressure': 766, 'humidity': 52, 'visibility': 10000, 'wind_speed': 5}
-
-    checker = Checker(schema)
-    result = checker.validate(dict1)
-
-    assert result == dict1
+    assert response.status_code == 200
+    assert validate(response.json(), schema)
 
 
 class WeatherForecastTests(SimpleTestCase):
