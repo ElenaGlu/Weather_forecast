@@ -53,11 +53,14 @@ def get_forecast_for_five_days(city: str) -> dict:
         temp_max = round(request_for_five_days['list'][part_day]['main']['temp_max'])
 
         if one_full_day not in forecast_for_five_days.keys():
-            forecast_for_five_days[one_full_day] = [100, -100, '']
+            forecast_for_five_days[one_full_day] = [ 100, -100, '', one_full_day]
         if forecast_for_five_days[one_full_day][0] > temp_min:
             forecast_for_five_days[one_full_day][0] = temp_min
         if forecast_for_five_days[one_full_day][1] < temp_max:
             forecast_for_five_days[one_full_day][1] = temp_max
         forecast_for_five_days[one_full_day][2] = weather_description
+
+    rename_keys = ['day_1', 'day_2', 'day_3', 'day_4', 'day_5', 'day_6']
+    forecast_for_five_days = dict(zip(rename_keys, list(forecast_for_five_days.values())))
 
     return forecast_for_five_days

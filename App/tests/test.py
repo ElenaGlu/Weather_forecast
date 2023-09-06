@@ -2,9 +2,8 @@ from django.test import SimpleTestCase
 from django.urls import reverse
 from django.test import Client
 
-from config import API_KEY_WEATHER
+from App.app_services import get_forecast_for_today, get_forecast_for_five_days
 
-import requests
 from jsonschema import validate
 
 
@@ -13,13 +12,14 @@ def test_get_forecast_for_today():
         'type': 'object',
         'required': ['city', 'conditions', 'temperature',
                      'temperature_feels', 'clouds', 'pressure',
-                     'humidity', 'visibility', 'wind_speed'],
+                     'humidity', 'visibility', 'wind_speed',
+                     'sunrise_timestamp', 'sunset_timestamp'],
         'properties': {
             'city': {
-                'type': 'integer'
+                'type': 'string'
             },
             'conditions': {
-                'type': 'integer'
+                'type': 'string'
             },
             'temperature': {
                 'type': 'integer'
@@ -42,15 +42,60 @@ def test_get_forecast_for_today():
             'wind_speed': {
                 'type': 'integer'
             },
+            'sunrise_timestamp': {
+                'format': 'date'
+            },
+            'sunset_timestamp': {
+                'format': 'date'
+            },
         }
     }
-    #
-    # response = requests.get(f'https://api.openweathermap.org/data/2.5/weather?q=Москва&units'
-    #                         f'=metric&lang=ru&appid={API_KEY_WEATHER}')
-    assert response.headers['Content-Type'] == "application/json; charset=utf-8"
 
-    assert response.status_code == 200
-    assert validate(response.json(), schema)
+    response = get_forecast_for_today('Москва')
+    assert not validate(response, schema)
+
+
+def test_get_forecast_for_five_days():
+    schema = {
+        'type': 'object',
+        'required': ['day_1', 'day_2', 'day_3', 'day_4', 'day_5', 'day_6'],
+        'properties': {
+            'day_1': {
+                'type': 'array',
+                'maxItems': 4,
+                'minItems': 4
+
+            },
+            'day_2': {
+                'type': 'array',
+                'maxItems': 4,
+                'minItems': 4
+            },
+            'day_3': {
+                'type': 'array',
+                'maxItems': 4,
+                'minItems': 4
+            },
+            'day_4': {
+                'type': 'array',
+                'maxItems': 4,
+                'minItems': 4
+            },
+            'day_5': {
+                'type': 'array',
+                'maxItems': 4,
+                'minItems': 4
+            },
+            'day_6': {
+                'type': 'array',
+                'maxItems': 4,
+                'minItems': 4
+            }
+        }
+    }
+
+    response = get_forecast_for_five_days('Москва')
+    assert not validate(response, schema)
 
 
 class WeatherForecastTests(SimpleTestCase):
