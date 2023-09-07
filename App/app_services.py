@@ -12,7 +12,7 @@ def request_to_api_forecast(url: str) -> json:
     """
     if requests.get(url).status_code == 200:
         return json.loads(requests.get(url).text)
-    raise KeyError()
+    raise ValueError()
 
 
 def get_forecast_for_today(city: str) -> dict:
@@ -60,7 +60,7 @@ def get_forecast_for_five_days(city: str) -> dict:
             forecast_for_five_days[one_full_day][1] = temp_max
         forecast_for_five_days[one_full_day][2] = weather_description
 
-    rename_keys = ['day_1', 'day_2', 'day_3', 'day_4', 'day_5', 'day_6']
+    rename_keys = ['day', 'day_1', 'day_2', 'day_3', 'day_4', 'day_5']
     forecast_for_five_days = dict(zip(rename_keys, list(forecast_for_five_days.values())))
 
     return forecast_for_five_days

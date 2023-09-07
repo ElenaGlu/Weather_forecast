@@ -58,13 +58,17 @@ def test_get_forecast_for_today():
 def test_get_forecast_for_five_days():
     schema = {
         'type': 'object',
-        'required': ['day_1', 'day_2', 'day_3', 'day_4', 'day_5', 'day_6'],
+        'required': ['day', 'day_1', 'day_2', 'day_3', 'day_4', 'day_5'],
         'properties': {
+            'day': {
+                'type': 'array',
+                'maxItems': 4,
+                'minItems': 4
+            },
             'day_1': {
                 'type': 'array',
                 'maxItems': 4,
                 'minItems': 4
-
             },
             'day_2': {
                 'type': 'array',
@@ -82,11 +86,6 @@ def test_get_forecast_for_five_days():
                 'minItems': 4
             },
             'day_5': {
-                'type': 'array',
-                'maxItems': 4,
-                'minItems': 4
-            },
-            'day_6': {
                 'type': 'array',
                 'maxItems': 4,
                 'minItems': 4
