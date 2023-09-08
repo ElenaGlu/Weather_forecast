@@ -34,7 +34,7 @@ class ForecastWeather:
         """
         Gets forecast data for the requested city for 5 days.
         :param: str
-        :return: dict. Example {"2023-07-31": [18, 24, "переменная облачность"], }
+        :return: dict. Example {"2023-07-31": [18, 24, "переменная облачность", "2023-09-08"], }
         """
         request_for_five_days = self.request_to_api_forecast(
             f'https://api.openweathermap.org/data/2.5/forecast?q={self.city}&units'

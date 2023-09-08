@@ -2,7 +2,7 @@ from django.test import SimpleTestCase
 from django.urls import reverse
 from django.test import Client
 
-from App.app_services import get_forecast_for_today, get_forecast_for_five_days
+from App.app_services import ForecastWeather
 
 from jsonschema import validate
 
@@ -64,7 +64,7 @@ class WeatherForecastTests(SimpleTestCase):
             }
         }
 
-        response = get_forecast_for_today('Москва')
+        response = ForecastWeather('Москва')
         assert not validate(response, schema)
 
     @staticmethod
@@ -106,5 +106,5 @@ class WeatherForecastTests(SimpleTestCase):
             }
         }
 
-        response = get_forecast_for_five_days('Москва')
+        response = ForecastWeather('Москва')
         assert not validate(response, schema)
