@@ -8,7 +8,6 @@ from jsonschema import validate
 
 
 class WeatherForecastTests(SimpleTestCase):
-    """ ADD TEXT ALLLLL"""
 
     def test_search_page(self):
         response = self.client.get(reverse("loading_search_page"))
