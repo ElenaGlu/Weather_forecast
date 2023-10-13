@@ -1,35 +1,38 @@
 import requests
 import json
 import datetime
-from config import API_KEY_WEATHER
 
+from typing import Callable
 
-# request_for_five_days = self.request_to_api_forecast(
-#     f'https://api.openweathermap.org/data/2.5/forecast?q={self.city}&units'
-#     f'=metric&lang=ru&appid={API_KEY_WEATHER}')
-#
-# return self.forecast_data_preparation(request_for_five_days)
-#
-# request_for_today = self.request_to_api_forecast(
-#     f'https://api.openweathermap.org/data/2.5/weather?q={self.city}&units'
-#     f'=metric&lang=ru&appid={API_KEY_WEATHER}')
-#
-# return self.forecast_data_preparation_today(request_for_five_days)
 
 class ForecastWeather:
     def __init__(self, city):
         self.city = city
 
-        # TODO тест
-    def api(self, url, forecast_method):
+    def choose_forecast(self, url: str, forecast_method: Callable) -> dict:
+        """
+        Choosing a forecast for today or 5 days
+        :param: url, forecast_method - gets forecast data for the requested city
+        :return: dict. Example {"clouds": "98", }
+        """
         return forecast_method(self.request_to_api_forecast(url))
 
-    # def get_forecast_for_today(self) -> dict:
+    @staticmethod
+    def request_to_api_forecast(url: str) -> json:
+        """
+        Requests the weather forecast in the API service(OpenWeatherMap).
+        :param: url
+        :return: json
+        """
+        resp = requests.get(url)
+        if resp.status_code == 200:
+            return resp.json()
+        raise ValueError('Данный город не найден, попробуй другой, дружок')
 
-    def forecast_data_preparation_today(self, request_for_today):
+    def forecast_data_preparation_today(self, request_for_today: json) -> dict:
         """
         Gets forecast data for the requested city for the current time.
-        :param: str
+        :param: request_for_today - json response
         :return: dict. Example {"clouds": "98", }
         """
         forecast_for_today = {'city': self.city, 'conditions': request_for_today['weather'][0]['description'],
@@ -45,10 +48,10 @@ class ForecastWeather:
         return forecast_for_today
 
     @staticmethod
-    def forecast_data_preparation(request_for_five_days):
+    def forecast_data_preparation(request_for_five_days: json) -> dict:
         """
         Gets forecast data for the requested city for 5 days.
-        :param: str
+        :param: request_for_five_days - json response
         :return: dict. Example {"2023-07-31": [18, 24, "переменная облачность", "2023-09-08"], }
         """
         forecast_for_five_days = {}
@@ -74,15 +77,3 @@ class ForecastWeather:
         forecast_for_five_days = dict(zip(rename_keys, list(forecast_for_five_days.values())))
 
         return forecast_for_five_days
-
-    @staticmethod
-    def request_to_api_forecast(url) -> json:
-        """
-        Requests the weather forecast in the API service(OpenWeatherMap).
-        :param: str
-        :return: json
-        """
-        resp = requests.get(url)
-        if resp.status_code == 200:
-            return resp.json()
-        raise ValueError('Данный город не найден, попробуй другой, дружок')
