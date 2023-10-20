@@ -5,7 +5,7 @@ import datetime
 from typing import Callable
 
 
-class ForecastWeather:
+class WeatherForecast:
     def __init__(self, city):
         self.city = city
 
@@ -29,7 +29,7 @@ class ForecastWeather:
             return resp.json()
         raise ValueError('Данный город не найден, попробуй другой, дружок')
 
-    def forecast_data_preparation_today(self, request_for_today: json) -> dict:
+    def data_processing_for_today(self, request_for_today: json) -> dict:
         """
         Gets forecast data for the requested city for the current time.
         :param: request_for_today - json response
@@ -48,7 +48,7 @@ class ForecastWeather:
         return forecast_for_today
 
     @staticmethod
-    def forecast_data_preparation(request_for_five_days: json) -> dict:
+    def data_processing_for_five_days(request_for_five_days: json) -> dict:
         """
         Gets forecast data for the requested city for 5 days.
         :param: request_for_five_days - json response
