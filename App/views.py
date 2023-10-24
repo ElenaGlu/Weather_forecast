@@ -27,11 +27,11 @@ def displays_weather_forecast_in_the_city(request: HttpRequest) -> HttpResponse:
             city = form.cleaned_data["city"]
 
             forecast = WeatherForecast(city)
-            forecast_for_today = forecast.choose_forecast(
+            forecast_for_today = forecast.selects_forecast_type(
                 f'https://api.openweathermap.org/data/2.5/weather?q={forecast.city}&units'
                 f'=metric&lang=ru&appid={API_KEY_WEATHER}', forecast.data_processing_for_today)
 
-            forecast_for_five_days = forecast.choose_forecast(
+            forecast_for_five_days = forecast.selects_forecast_type(
                 f'https://api.openweathermap.org/data/2.5/forecast?q={forecast.city}&units'
                 f'=metric&lang=ru&appid={API_KEY_WEATHER}', forecast.data_processing_for_five_days)
 

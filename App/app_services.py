@@ -1,27 +1,28 @@
-import requests
-import json
 import datetime
-
+import json
 from typing import Callable
+
+import requests
 
 
 class WeatherForecast:
+
     def __init__(self, city):
         self.city = city
 
-    def choose_forecast(self, url: str, forecast_method: Callable) -> dict:
+    def selects_forecast_type(self, url: str, forecast_method: Callable) -> dict:
         """
         Choosing a forecast for today or 5 days
-        :param: url, forecast_method - gets forecast data for the requested city
+        param: url, forecast_method - gets forecast data for the requested city
         :return: dict. Example {"clouds": "98", }
         """
-        return forecast_method(self.request_to_api_forecast(url))
+        return forecast_method(self.request_to_api_service(url))
 
     @staticmethod
-    def request_to_api_forecast(url: str) -> json:
+    def request_to_api_service(url: str) -> json:
         """
         Requests the weather forecast in the API service(OpenWeatherMap).
-        :param: url
+        param: url
         :return: json
         """
         resp = requests.get(url)
@@ -32,7 +33,7 @@ class WeatherForecast:
     def data_processing_for_today(self, request_for_today: json) -> dict:
         """
         Gets forecast data for the requested city for the current time.
-        :param: request_for_today - json response
+        param: request_for_today - json response
         :return: dict. Example {"clouds": "98", }
         """
         forecast_for_today = {'city': self.city, 'conditions': request_for_today['weather'][0]['description'],
@@ -51,8 +52,8 @@ class WeatherForecast:
     def data_processing_for_five_days(request_for_five_days: json) -> dict:
         """
         Gets forecast data for the requested city for 5 days.
-        :param: request_for_five_days - json response
-        :return: dict. Example {"2023-07-31": [18, 24, "переменная облачность", "2023-09-08"], }
+        param: request_for_five_days - json response
+        :return: dict. Example {"2023-07-31": [18, 24, "переменная облачность", "2023-07-31"], }
         """
         forecast_for_five_days = {}
         temp_min_buff = 100
