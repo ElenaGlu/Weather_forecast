@@ -1,7 +1,6 @@
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 
-
 from config import API_KEY_WEATHER
 from .app_services import WeatherForecast
 from .forms import PlaceForm
