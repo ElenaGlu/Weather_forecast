@@ -13,8 +13,9 @@ class WeatherForecast:
     def selects_forecast_type(self, url: str, forecast_method: Callable) -> dict:
         """
         Choosing a forecast for today or 5 days
-        param: url, forecast_method - gets forecast data for the requested city
-        :return: dict. Example {"clouds": "98", }
+        :param url: api service access address
+        :param forecast_method: gets forecast data for the requested city
+        :return: dict, example {"clouds": "98", }
         """
         return forecast_method(self.request_to_api_service(url))
 
@@ -22,8 +23,8 @@ class WeatherForecast:
     def request_to_api_service(url: str) -> json:
         """
         Requests the weather forecast in the API service(OpenWeatherMap).
-        param: url
-        :return: json
+        :param url: api service access address
+        :return json: json-file with weather forecast data
         """
         resp = requests.get(url)
         if resp.status_code == 200:
@@ -33,8 +34,8 @@ class WeatherForecast:
     def data_processing_for_today(self, request_for_today: json) -> dict:
         """
         Gets forecast data for the requested city for the current time.
-        param: request_for_today - json response
-        :return: dict. Example {"clouds": "98", }
+        :param request_for_today: json-file with weather forecast data
+        :return: dict, example {"clouds": "98", }
         """
         forecast_for_today = {'city': self.city, 'conditions': request_for_today['weather'][0]['description'],
                               'temperature': round(request_for_today['main']['temp']),
@@ -52,8 +53,8 @@ class WeatherForecast:
     def data_processing_for_five_days(request_for_five_days: json) -> dict:
         """
         Gets forecast data for the requested city for 5 days.
-        param: request_for_five_days - json response
-        :return: dict. Example {"2023-07-31": [18, 24, "переменная облачность", "2023-07-31"], }
+        :param request_for_five_days: json-file with weather forecast data
+        :return: dict, example {"2023-07-31": [18, 24, "переменная облачность", "2023-07-31"], }
         """
         forecast_for_five_days = {}
         temp_min_buff = 100
