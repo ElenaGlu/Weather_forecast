@@ -31,6 +31,7 @@ python manage.py runserver
 ```
 
 - После запуска проект будут доступен по адресу: [http://localhost/](http://localhost/)
-  ![image](https://github.com/ElenaGlu/Django-Weather/assets/123466535/01c73ff8-70d8-4728-9688-74c5cd6245c6)
-  ![image](https://github.com/ElenaGlu/Django-Weather/assets/123466535/09ffd580-ed1f-49c1-b5df-ed25090715c3)
+![IMG_5541](https://github.com/ElenaGlu/Django-Weather/assets/123466535/63b8fac2-ca3b-414f-8a38-4194679d580e)
+![photo_2023-10-26_19-03-36 (2)](https://github.com/ElenaGlu/Django-Weather/assets/123466535/41de0fce-0cd8-48ff-9d04-d1a0b45676fd)
+
 
