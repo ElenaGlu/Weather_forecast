@@ -18,6 +18,12 @@ https://github.com/ElenaGlu/Django-Weather.git
 python -m venv venv
 source venv/bin/activate     #для Linux
 ```
+### В директории Django-Weather создайте файл `.env` и заполните данными:
+
+```
+DJANGO_KEY = 'key'
+API_KEY_WEATHER = 'key'      #API key - https://openweathermap.org/
+```
 ### Установите требуемые зависимости:
 
 - Выполните команду в терминале: 
